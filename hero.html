@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebrafish OS Hero</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .hero-container {
+            width: 1200px;
+            height: 629px;
+            background: linear-gradient(135deg, #0a1929 0%, #1e3a5f 35%, #2196f3 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(33, 150, 243, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(33, 150, 243, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(33, 150, 243, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 30%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 3s; }
+        .particle:nth-child(5) { top: 10%; left: 60%; animation-delay: 4s; }
+        .particle:nth-child(6) { top: 70%; left: 90%; animation-delay: 5s; }
+        
+        .logo-container {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 40px;
+            animation: logo-glow 3s ease-in-out infinite;
+        }
+        
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.3) 0%, rgba(33, 150, 243, 0.1) 40%, transparent 70%);
+            border-radius: 50%;
+            animation: radial-pulse 4s ease-in-out infinite;
+        }
+        
+        .zebrafish-logo {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 20px rgba(33, 150, 243, 0.5));
+        }
+        
+        .content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            color: white;
+        }
+        
+        .main-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #2196f3, #00bcd4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(33, 150, 243, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .tech-accents {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 400px;
+            border: 2px solid rgba(33, 150, 243, 0.2);
+            border-radius: 20px;
+            animation: border-pulse 4s ease-in-out infinite;
+        }
+        
+        .tech-accents::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid rgba(33, 150, 243, 0.1);
+            border-radius: 25px;
+            animation: border-pulse 4s ease-in-out infinite reverse;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @keyframes logo-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(33, 150, 243, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(33, 150, 243, 0.8)); }
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes radial-pulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <div class="tech-grid"></div>
+        
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="tech-accents"></div>
+        
+        <div class="logo-container">
+            <svg class="zebrafish-logo" viewBox="0 0 194.23361 198.91435" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(-23.249814,-7.3467005)">
+                    <path fill="#0b3f53" d="m 111.37872,7.3470852 c -7.10633,0.019533 -14.689101,0.7841319 -20.878906,2.6523438 -19.343981,5.487594 -34.067353,16.9883 -46.056641,32.833984 28.641072,1.417099 52.197761,11.083136 72.556637,30.666016 1.90789,-4.071933 5.2322,-7.038823 10.31836,-8.695313 -0.14838,0.03857 26.4756,-7.020545 35.18164,-12.304687 5.1982,-2.750857 8.66,-5.328707 5.5,-12 C 158.91882,27.081742 138.4931,11.751716 132.4627,10.20646 128.86564,8.5289525 120.51543,7.3219711 111.37872,7.3470852 Z m 16.58984,15.8320308 a 8.7677135,8.5942736 0 0 1 8.76758,8.595704 8.7677135,8.5942736 0 0 1 -8.76758,8.59375 8.7677135,8.5942736 0 0 1 -8.76757,-8.59375 8.7677135,8.5942736 0 0 1 8.76757,-8.595704 z" />
+                </g>
+                <g transform="translate(-23.249814,-7.3467005)">
+                    <path fill="#47beed" d="M 34.258261,57.503556 C 52.079202,58.704366 91.603502,75.672287 108.01285,96.417752 128.86578,120.14511 52.976233,119.82201 33.87752,145.47115 29.005388,140.89474 23.14278,134.09524 23.251298,127.44024 28.660335,110.59335 73.241565,104.88133 88.345486,102.87855 68.296496,91.283068 46.51177,80.946436 23.646258,83.944503 26.876027,72.925801 29.308815,65.425733 34.258261,57.503556 Z" />
+                </g>
+                <g transform="translate(-23.249814,-7.3467005)">
+                    <path fill="#41bded" d="m 209.01834,124.67578 c 6.78772,0.7928 13.80659,12.45814 2.48166,15.82422 -11.32493,3.36608 -79.92725,8.60929 -79.58922,-6.65357 0.0582,-2.62995 -1.15466,-5.65346 2.32113,-7.11243 16.69591,-7.00816 68.24001,-2.82284 74.78643,-2.05822 z" />
+                </g>
+                <g transform="translate(-23.249814,-7.3467005)">
+                    <path fill="#0b3f53" d="m 102.52709,135.14186 c 7.31706,7.08495 -2.47563,24.42632 0.47291,24.35814 14.35298,-7.08499 26.88852,-7.51882 38.19687,4.27664 3.95544,6.20277 5.20413,12.70436 1.30313,19.22336 -5.57932,5.47465 -5.43229,1.44431 -4.98666,-1.00346 1.42517,-8.89791 -12.86374,-2.85756 -17.96801,-3.01289 -0.0655,4.87145 6.08773,14.74601 34.95467,21.01635 3.81878,1.02721 13.2908,1.98744 0,5 -2.74996,0.50665 -60.440588,8.90474 -65.5,-25.5 -1.0314,-3.039 -2.8647,-5.539 -5.5,-7.5 -4.0488,-2.098 -14.484363,-3.14188 -17.637341,-4.82143 C 59.005677,164.39451 50.121065,160.6532 47.092392,155.70897 42.986835,148.40648 52.9832,148.656 61,149.5 c 4.8196,0.866 9.6529,1.033 14.5,0.5 11.882558,-0.60417 20.640435,-7.385 27.02709,-14.85814 z" />
+                </g>
+            </svg>
+        </div>
+        
+        <div class="content">
+            <h1 class="main-title">Zebrafish OS</h1>
+            <p class="subtitle">Lightweight containerized Linux OS</p>
+        </div>
+    </div>
+</body>
+</html>
